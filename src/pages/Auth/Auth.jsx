@@ -96,7 +96,7 @@ const Auth = () => {
         </p>
       </div>
 
-      <div className="container">
+      <div className="auth-container">
         <div className="create_acc">
           {isSignup ? <h1>Create Account</h1> : <h1>Log In</h1>}
 

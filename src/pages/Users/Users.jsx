@@ -26,8 +26,9 @@ const Users = () => {
   console.log(userLists);
 
   return (
-    <div className="conatiner">
+    <>
       <Navbar />
+      <div className="Users-conatiner">
 
       {/* {loading ? (
         <h1>Loading...</h1>
@@ -45,6 +46,8 @@ const Users = () => {
           <User key={filteredUser.id} users={filteredUser} />
         ))}
     </div>
+    </>
+    
   );
 };
 

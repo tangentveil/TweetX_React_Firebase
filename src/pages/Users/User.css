@@ -4,6 +4,7 @@
     justify-content: center;
     flex-direction: column;
     width: 100%;
+    margin: 0;
 }
 
 .subContainer{
@@ -60,7 +61,7 @@
 
     border-bottom: 2px solid #e3e2e2;
     width:40%;
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }
 
 .follow-btn{
