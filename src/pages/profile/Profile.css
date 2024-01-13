@@ -1,0 +1,22 @@
+.profileContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid red;
+}
+
+.profileContainer h1{
+    margin: 0;
+    /* float: left; */
+}
+
+.post_follow{
+    display: flex;
+}
+
+.post_follow p{
+    margin: 0;
+    padding: 20px;
+}

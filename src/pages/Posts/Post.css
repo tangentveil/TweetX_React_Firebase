@@ -1,0 +1,48 @@
+.PostContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.SubPostContainer {
+    width: 100%;
+    background-color: white;
+    margin-top: 20px;
+    border-radius: 15px;
+    box-shadow: 3px 3px 10px rgb(0 0 0 /5%),
+        -3px -3px 10px rgb(0 0 0 / 5%);
+
+    padding: 5px;
+}
+
+.user{
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.user_time{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.text_cir{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.text_cir p{
+    width: 90%;
+}
+
+
+.cir{
+    background-color: pink;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    /* padding-left: 10px; */
+}
