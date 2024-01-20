@@ -47,7 +47,8 @@ form {
     display: flex;
     flex-direction: column;
     margin-left: 10px;
-    width: 90%;
+    width: 100%;
+    align-items: flex-end;
 }
 
 form label{
@@ -70,7 +71,7 @@ form input{
     border: none;
     border-radius: 3px;
     width: 30%;
-    margin-left: 481px;
+    /* margin-left: 481px; */
     color: white;
     font-weight: 800;
     cursor: pointer;

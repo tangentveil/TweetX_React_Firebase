@@ -1,29 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import "./Users.css";
 import User from "./User";
 import Navbar from "../../components/Navbar/Navbar";
-import { getDocs, collection } from "firebase/firestore";
-import { auth, db } from "../../firebase";
+import { auth } from "../../firebase";
+import { Context } from "../../Context/MyContext";
 
 const Users = () => {
-  const [userLists, setUserLists] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const usersCollectionRef = collection(db, "users");
+  
+  const {userLists} = useContext(Context);
 
-  useEffect(() => {
-    const getUsers = async () => {
-      const data = await getDocs(usersCollectionRef);
-      // console.log(data.docs)
-      console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      // console.log(data.docs.map((doc) => ({ ...doc.data(), docid: doc.id})));
-
-      setUserLists(data.docs.map((doc) => ({ ...doc.data(), docId: doc.id })));
-    };
-
-    getUsers();
-  }, []);
-
-  console.log(userLists);
+  // console.log(userLists);
 
   return (
     <>
