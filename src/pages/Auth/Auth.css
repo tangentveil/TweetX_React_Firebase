@@ -53,7 +53,7 @@ form {
 
 form label{
     padding: 1rem;
-    width: 100%;
+    width: 95%;
 }
 
 form input{
@@ -61,7 +61,7 @@ form input{
     background-color: rgb(232, 230, 230);
     border: none;
     border-radius: 3px;
-    width: 100%;
+    width: 98%;
     outline: none;
 }
 

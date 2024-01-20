@@ -77,7 +77,7 @@ const MyContext = ({ children }) => {
     getFollowedUsers();
     getPosts();
     getUsers();
-  }, []);
+  }, [followedUsers]);
 
   const handlePost = async () => {
     await addDoc(postsCollectionRef, {
@@ -93,53 +93,6 @@ const MyContext = ({ children }) => {
 
     setText("");
   };
-
-  //   const [isFollowing, setIsFollowing] = useState(false);
-
-  //   const userFollowRef = collection(db, "users", User?.uid, "follows");
-  //   const UserDocRef = doc(userFollowRef, users?.id);
-
-  //   const userFollowerRef = collection(db, "users", users?.id, "followers");
-  //   const followerRef = doc(userFollowerRef, User?.uid);
-
-  //   useEffect(() => {
-  //     const checkIfFollowing = async () => {
-  //       try {
-  //         const userDocSnapshot = await getDoc(UserDocRef);
-  //         setIsFollowing(userDocSnapshot.exists());
-  //       } catch (error) {
-  //         console.error("Error checking if following:", error);
-  //       }
-  //     };
-
-  //     checkIfFollowing();
-  //   }, [UserDocRef, setIsFollowing, users?.id]);
-
-  //   const handleFollow = async () => {
-  //     try {
-  //       if (User) {
-  //         if (isFollowing) {
-  //           await deleteDoc(UserDocRef);
-  //           await deleteDoc(followerRef);
-  //           setIsFollowing(false);
-  //           // alert("User Unfollowed");
-  //         } else {
-  //           await setDoc(UserDocRef, {
-  //             userId: users.id,
-  //           });
-
-  //           await setDoc(followerRef, {
-  //             userId: User.uid,
-  //           });
-
-  //           setIsFollowing(true);
-  //           // alert("User Followed")
-  //         }
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
 
   useEffect(() => {
     const getFollowersData = async () => {

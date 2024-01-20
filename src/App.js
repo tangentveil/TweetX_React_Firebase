@@ -37,13 +37,18 @@ function App() {
   }, []);
 
   return (
-    // <div className='App'>
-    <MyContext>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Auth />} />
-          {authUser !== null ? (
-            <>
+    <>
+      {authUser === null ? (
+        <Router>
+          <Routes>
+            <Route path="/" element={<Auth />} />
+          </Routes>
+        </Router>
+      ) : (
+        <MyContext>
+          <Router>
+            <Routes>
+              <Route path="/" element={<Auth />} />
               <Route path="/Home" element={<Home />} />
               <Route path="/feed" element={<Feed />} />
               <Route path="/profile/posts" element={<UserProfilePosts />} />
@@ -58,14 +63,11 @@ function App() {
                 path="/profile/following"
                 element={<UserProfileFollowing />}
               />
-            </>
-          ) : (
-            <Route path="/" element={<Auth />} />
-          )}
-        </Routes>
-      </Router>
-    </MyContext>
-    // </div>
+            </Routes>
+          </Router>
+        </MyContext>
+      )}
+    </>
   );
 }
 
