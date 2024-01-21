@@ -6,7 +6,7 @@ import moment from "moment";
 
 const UserProfilePosts = () => {
   const {postCount, usersPosts, img} = useContext(Context)
-  console.log(usersPosts)
+  // console.log(usersPosts)
 
 //   console.log(postLists);
 //   console.log(usersPosts);
@@ -17,7 +17,7 @@ const UserProfilePosts = () => {
       <div className="user-profile-posts-container">
       <div className="mainPostContainer">
         {usersPosts.map((item) => (
-          <div className="PostContainer">
+          <div key={item.id} className="PostContainer">
           <div className="SubPostContainer">
             <div className="image-user_time">
               <div className="image">

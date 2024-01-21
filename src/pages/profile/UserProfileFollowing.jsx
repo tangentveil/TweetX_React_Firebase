@@ -11,7 +11,7 @@ const UserProfileFollowing = () => {
 
       {userListFollowing.map((item) => {
         return (
-          <div className="container">
+          <div key={item.id} className="container">
             <div className="subContainer">
               <div className="image-user-foll">
                 <div className="image">

@@ -8,11 +8,12 @@ const UserProfileFollowers = () => {
 
   const {followers, loading, setLoading} = useContext(Context)
 
-  if(followers.length === 0){
-    setLoading(true);
-  } else{
-    setLoading(false);
-  }
+  // if(followers.length === 0){
+  //   setLoading(true);
+  // }
+
+  // if(followers.length) setLoading(false);
+  setLoading(false)
 
   return (
     <>
