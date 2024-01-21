@@ -8,9 +8,6 @@ const UserProfilePosts = () => {
   const {postCount, usersPosts, img} = useContext(Context)
   // console.log(usersPosts)
 
-//   console.log(postLists);
-//   console.log(usersPosts);
-
   return (
     <>
       <Profile postCount={postCount} />

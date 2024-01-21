@@ -1,16 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { auth, db } from "../firebase";
-import {
-  addDoc,
-  collection,
-  deleteDoc,
-  doc,
-  getDoc,
-  getDocs,
-  query,
-  setDoc,
-  where,
-} from "firebase/firestore";
+import { addDoc, collection, getDocs } from "firebase/firestore";
 import img from "../assets/auth.png";
 
 import React from "react";
@@ -21,6 +11,9 @@ const MyContext = ({ children }) => {
   const User = auth.currentUser;
 
   // console.log(User);
+
+  const [allUsers, setAllUsers] = useState([]);
+  const [allPosts, setAllposts] = useState([]);
 
   const [postLists, setPostLists] = useState([]);
   const [userLists, setUserLists] = useState([]);
@@ -42,160 +35,134 @@ const MyContext = ({ children }) => {
   const followsCollectionRef = collection(db, "users", User.uid, "follows");
   const followersCollectionRef = collection(db, "users", User.uid, "followers");
 
+  // console.log(postLists);
+
   useEffect(() => {
-    const fetchFollowedUsers = async () => {
+    const getFollowedUsers = async () => {
       try {
         const followsData = await getDocs(followsCollectionRef);
-        setFollowedUsers(followsData.docs.map((doc) => doc.id));
+        const followeduser = followsData.docs.map((doc) => doc.id);
+        setFollowedUsers(followeduser);
       } catch (error) {
-        console.error("Error fetching followed users:", error);
+        console.log("Error in Fetching Followed Users", error);
       }
     };
 
-    const fetchPostsFromFollowedUsers = async () => {
+    const getAllPosts = async () => {
       try {
-        if (followedUsers.length === 0) {
-          setPostLists([]);
-          return;
-        }
-
-        const postsQuery = query(
-          postsCollectionRef,
-          where("id", "in", followedUsers)
-        );
-        const postsData = await getDocs(postsQuery);
-        setPostLists(
-          postsData.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-        );
-      } catch (error) {
-        console.error("Error fetching posts from followed users:", error);
-      }
-    };
-
-    const fetchUsers = async () => {
-      try {
-        const usersData = await getDocs(usersCollectionRef);
-        setUserLists(
-          usersData.docs.map((doc) => ({ ...doc.data(), docId: doc.id }))
-        );
-      } catch (error) {
-        console.error("Error fetching users:", error);
-      }
-    };
-
-    const fetchFollowers = async () => {
-      try {
-        const followersData = await getDocs(followersCollectionRef);
-        setFollowersLists(followersData.docs.map((doc) => doc.id));
-      } catch (error) {
-        console.error("Error fetching followers:", error);
-      }
-    };
-
-    const fetchFollowersData = async () => {
-      try {
-        if (followersLists.length === 0) {
-          setFollowers([]);
-          return;
-        }
-
-        const followersQuery = query(
-          usersCollectionRef,
-          where("id", "in", followersLists)
-        );
-        const followersData = await getDocs(followersQuery);
-        setFollowers(
-          followersData.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-        );
-        setFollowersCount(followers.length);
-      } catch (error) {
-        console.error("Error fetching followers' data:", error);
-      }
-    };
-
-    const fetchUserSpecificPosts = async () => {
-      try {
-        const userPostsData = await getDocs(postsCollectionRef);
-        const userPosts = userPostsData.docs.map((doc) => ({
+        const data = await getDocs(postsCollectionRef);
+        const posts = data.docs.map((doc) => ({
           ...doc.data(),
           docId: doc.id,
         }));
-        const currentUserPosts = userPosts.filter(
-          (user) => user?.id === auth?.currentUser?.uid
-        );
-        setUsersPosts(currentUserPosts);
-        setPostCount(currentUserPosts.length);
+
+        setAllposts(posts);
       } catch (error) {
-        console.error("Error fetching user-specific posts:", error);
+        console.log("Error in Fetching All Posts", error);
       }
     };
 
-    const fetchFollowingUsers = async () => {
+    const getAllUsers = async () => {
       try {
-        const followingUsersData = await getDocs(followsCollectionRef);
-        setFollowingUsers(followingUsersData.docs.map((doc) => doc.id));
+        const data = await getDocs(usersCollectionRef);
+        const users = data.docs.map((doc) => ({
+          ...doc.data(),
+          docId: doc.id,
+        }));
+
+        setAllUsers(users);
       } catch (error) {
-        console.error("Error fetching following users:", error);
+        console.log("Error in Fetching All Users", error);
       }
     };
 
-    const fetchFollowingUsersPosts = async () => {
+    const getFollowersID = async () => {
       try {
-        if (followingUsers.length === 0) {
-          setUserListFollowing([]);
-          return;
-        }
-
-        const followingUsersQuery = query(
-          postsCollectionRef,
-          where("id", "in", followingUsers)
-        );
-        const followingUsersData = await getDocs(followingUsersQuery);
-        setUserListFollowing(
-          followingUsersData.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-        );
-        setFollowingCount(userListFollowing.length);
+        const followsData = await getDocs(followersCollectionRef);
+        const followersId = followsData.docs.map((doc) => doc.id);
+        setFollowersLists(followersId);
       } catch (error) {
-        console.error("Error fetching following users' posts:", error);
+        console.log("Error in Fetching Followers", error);
       }
     };
 
-    const fetchData = async () => {
-      setLoading(true);
-
-      await Promise.all([
-        fetchFollowedUsers(),
-        fetchPostsFromFollowedUsers(),
-        fetchUsers(),
-        fetchFollowers(),
-        fetchFollowersData(),
-        fetchUserSpecificPosts(),
-        fetchFollowingUsers(),
-        fetchFollowingUsersPosts(),
-      ]);
-
-      setLoading(false);
+    const getFollowingUsersID = async () => {
+      try {
+        const followsData = await getDocs(followsCollectionRef);
+        const followingID = followsData.docs.map((doc) => doc.id);
+        setFollowingUsers(followingID);
+      } catch (error) {
+        console.log("Error in Fetching Following Users IDs", error);
+      }
     };
 
-    fetchData();
-  }, []); // Dependency array should be adjusted based on actual dependencies
+    getFollowingUsersID();
+    getFollowersID();
+    getFollowedUsers();
+    getAllUsers();
+    getAllPosts();
+  }, []);
+  
+
+  useEffect(() => {
+    const getFollowedUsersPost = () => {
+      const followedUserIds = new Set(followedUsers);
+      const filteredPosts = allPosts.filter((post) =>
+        followedUserIds.has(post.id)
+      );
+
+      // console.log(filteredPosts)
+      setPostLists(filteredPosts);
+    };
+
+    const getFollowers = () => {
+      const followersUserIds = new Set(followersLists);
+      const filteredFollwers = allUsers.filter((user) =>
+        followersUserIds.has(user.id)
+      );
+
+      // console.log(filteredFollwers)
+      setFollowers(filteredFollwers);
+      setFollowersCount(followers.length);
+    };
+
+    const getFollowingUsers = () => {
+      const followingUserIds = new Set(followingUsers);
+      const filteredFollowings = allUsers.filter((user) =>
+        followingUserIds.has(user.id)
+      );
+
+      setUserListFollowing(filteredFollowings);
+      // setLoading(false)
+      setFollowingCount(userListFollowing.length);
+    };
+
+    const getUserPosts = () => {
+      const userPosts = allPosts.filter(
+        (user) => user.id === User.uid
+      );
+
+      setUsersPosts(userPosts);
+      setPostCount(userPosts.length);
+    };
+
+    getFollowedUsersPost();
+    getFollowers();
+    getFollowingUsers();
+    getUserPosts();
+  }, [followedUsers, allPosts, allUsers, followersLists, followingUsers, postCount, followersCount, followingCount]);
 
   const handlePost = async () => {
     await addDoc(postsCollectionRef, {
-      displayName: auth?.currentUser?.displayName,
-      id: auth?.currentUser?.uid,
+      displayName: User.displayName,
+      id: User.uid,
       text,
       created: Date.now(),
     });
 
-    // getFollowedUsers(); // Refresh the list of followed users
-
     alert("Post Created");
-
     setText("");
   };
-
-  // console.log(followers);
 
   return (
     <Context.Provider
@@ -215,6 +182,9 @@ const MyContext = ({ children }) => {
         userListFollowing,
         loading,
         setLoading,
+        allUsers,
+        allPosts,
+        followedUsers
       }}
     >
       {children}

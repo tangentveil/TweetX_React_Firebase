@@ -1,7 +1,6 @@
 import "./App.css";
 import MyContext from "./Context/MyContext";
 import Auth from "./pages/Auth/Auth";
-import Home from "./pages/Home/Home";
 import Feed from "./pages/Feed/Feed";
 import Profile from "./pages/profile/Profile";
 import Posts from "./pages/Posts/Posts";
@@ -49,7 +48,6 @@ function App() {
           <Router>
             <Routes>
               <Route path="/" element={<Auth />} />
-              <Route path="/Home" element={<Home />} />
               <Route path="/feed" element={<Feed />} />
               <Route path="/profile/posts" element={<UserProfilePosts />} />
               <Route path="/posts" element={<Posts />} />

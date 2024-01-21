@@ -14,9 +14,9 @@ import { Context } from "../../Context/MyContext";
 const User = ({ users }) => {
   // console.log(users)
 
-  const {isFollowing, setIsFollowing} = useContext(Context)
+  // const {isFollowing, setIsFollowing} = useContext(Context)
 
-  // const [isFollowing, setIsFollowing] = useState(false);
+  const [isFollowing, setIsFollowing] = useState(false);
   const User = auth?.currentUser;
 
   const userFollowRef = collection(db, "users", User?.uid, "follows");
@@ -29,6 +29,7 @@ const User = ({ users }) => {
     const checkIfFollowing = async () => {
       try {
         const userDocSnapshot = await getDoc(UserDocRef);
+        // console.log(userDocSnapshot)
         setIsFollowing(userDocSnapshot.exists());
       } catch (error) {
         console.error("Error checking if following:", error);
@@ -36,7 +37,7 @@ const User = ({ users }) => {
     };
 
     checkIfFollowing();
-  }, [UserDocRef, setIsFollowing, users?.id]);
+  }, [UserDocRef, users.id, isFollowing]);
 
   const handleFollow = async () => {
     try {

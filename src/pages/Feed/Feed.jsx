@@ -5,7 +5,12 @@ import Posts from "../Posts/Posts";
 import { Context } from "../../Context/MyContext";
 
 const Feed = () => {
-  const {postLists, setText, handlePost} = useContext(Context); 
+  const { setText, handlePost, postLists, loading, setLoading } = useContext(Context);
+
+  console.log(postLists)
+  
+  if(postLists.length === 0) setLoading(true);
+  else setLoading(false);
 
   return (
     <div className="feed-container">
@@ -24,7 +29,7 @@ const Feed = () => {
             </button>
           </div>
         </div>
-        <Posts postLists={postLists}></Posts>
+        {loading ?<h1>Loading...</h1> :<Posts postLists={postLists}></Posts>}
       </div>
     </div>
   );
