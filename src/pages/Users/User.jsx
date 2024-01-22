@@ -13,31 +13,31 @@ import { Context } from "../../Context/MyContext";
 
 const User = ({ users }) => {
   // console.log(users)
+  const User = auth.currentUser;
+  // console.log(curUser)
 
-  // const {isFollowing, setIsFollowing} = useContext(Context)
-
+  const {followingUsers} = useContext(Context)
   const [isFollowing, setIsFollowing] = useState(false);
-  const User = auth?.currentUser;
 
-  const userFollowRef = collection(db, "users", User?.uid, "follows");
+  const userFollowRef = collection(db, "users", User.uid, "follows");
   const UserDocRef = doc(userFollowRef, users?.id);
 
-  const userFollowerRef = collection(db, "users", users?.id, "followers");
-  const followerRef = doc(userFollowerRef, User?.uid);
+  const userFollowerRef = collection(db, "users", users.id, "followers");
+  const followerRef = doc(userFollowerRef, User.uid);
 
   useEffect(() => {
-    const checkIfFollowing = async () => {
-      try {
-        const userDocSnapshot = await getDoc(UserDocRef);
-        // console.log(userDocSnapshot)
-        setIsFollowing(userDocSnapshot.exists());
-      } catch (error) {
-        console.error("Error checking if following:", error);
-      }
+    const checkIfFollowing = () => {
+      const UserIds = new Set(followingUsers);
+      const filteredFollows = UserIds.has(users.id);
+  
+      // console.log(filteredFollows)
+  
+      setIsFollowing(filteredFollows)
+  
     };
 
     checkIfFollowing();
-  }, [UserDocRef, users.id, isFollowing]);
+  }, [users.id]);
 
   const handleFollow = async () => {
     try {
@@ -45,8 +45,8 @@ const User = ({ users }) => {
         if (isFollowing) {
           await deleteDoc(UserDocRef);
           await deleteDoc(followerRef);
-          setIsFollowing(false);
-          // alert("User Unfollowed");
+          setIsFollowing(!isFollowing);
+          alert("User Unfollowed");
         } else {
           await setDoc(UserDocRef, {
             userId: users.id,
@@ -56,8 +56,8 @@ const User = ({ users }) => {
             userId: User.uid,
           });
 
-          setIsFollowing(true);
-          // alert("User Followed")
+          setIsFollowing(!isFollowing);
+          alert("User Followed")
         }
       }
     } catch (error) {

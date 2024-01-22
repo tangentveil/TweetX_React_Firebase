@@ -4,8 +4,10 @@ import { auth, db } from "../../firebase";
 import { collection, deleteDoc, doc, getDoc, setDoc } from "firebase/firestore";
 
 const UserProfileFollower = ({ users }) => {
-  const { img } = useContext(Context);
+  const { img, followingUsers} = useContext(Context);
+
   const User = auth.currentUser;
+
   const [isFollowing, setIsFollowing] = useState(false);
 
   const userFollowRef = collection(db, "users", User?.uid, "follows");
@@ -15,17 +17,18 @@ const UserProfileFollower = ({ users }) => {
   const followerRef = doc(userFollowerRef, User?.uid);
 
   useEffect(() => {
-    const checkIfFollowing = async () => {
-      try {
-        const userDocSnapshot = await getDoc(UserDocRef);
-        setIsFollowing(userDocSnapshot.exists());
-      } catch (error) {
-        console.error("Error checking if following:", error);
-      }
+    const checkIfFollowing = () => {
+      const UserIds = new Set(followingUsers);
+      const filteredFollows = UserIds.has(users.id);
+  
+      // console.log(filteredFollowings)
+  
+      setIsFollowing(filteredFollows)
+  
     };
 
     checkIfFollowing();
-  }, [UserDocRef, setIsFollowing, users?.id]);
+  }, [users.id]);
 
   const handleFollow = async () => {
     try {
@@ -33,7 +36,7 @@ const UserProfileFollower = ({ users }) => {
         if (isFollowing) {
           await deleteDoc(UserDocRef);
           await deleteDoc(followerRef);
-          setIsFollowing(false);
+          setIsFollowing(!isFollowing);
           // alert("User Unfollowed");
         } else {
           await setDoc(UserDocRef, {
@@ -44,7 +47,7 @@ const UserProfileFollower = ({ users }) => {
             userId: User.uid,
           });
 
-          setIsFollowing(true);
+          setIsFollowing(!isFollowing);
           // alert("User Followed")
         }
       }
@@ -52,6 +55,8 @@ const UserProfileFollower = ({ users }) => {
       console.log(error);
     }
   };
+
+  console.log(isFollowing)
 
   return (
     <div className="container">

@@ -7,11 +7,11 @@ import { Context } from "../../Context/MyContext";
 
 const Users = () => {
   
-  const {allUsers, loading, setLoading} = useContext(Context);
+  const {allUsers} = useContext(Context);
 
   // console.log(userLists);
-  if(allUsers.length === 0) setLoading(true);
-  else setLoading(false);
+  // if(allUsers.length === 0) setLoading(true);
+  // else setLoading(false);
 
   return (
     <>

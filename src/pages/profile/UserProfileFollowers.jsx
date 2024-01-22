@@ -5,25 +5,15 @@ import { Context } from "../../Context/MyContext";
 import UserProfileFollower from "./UserProfileFollower";
 
 const UserProfileFollowers = () => {
-
-  const {followers, loading, setLoading} = useContext(Context)
-
-  // if(followers.length === 0){
-  //   setLoading(true);
-  // }
-
-  // if(followers.length) setLoading(false);
-  setLoading(false)
+  const { followers, loading, setLoading } = useContext(Context);
 
   return (
     <>
       <Profile />
 
-{loading ? <h1>Loading...</h1> : (
-        followers.map((users) => {
-          return <UserProfileFollower key={users.id} users={users}/>
-        })
-)}
+      {followers.map((users) => {
+        return <UserProfileFollower key={users.id} users={users} />;
+      })}
     </>
   );
 };

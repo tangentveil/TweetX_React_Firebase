@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { auth, db } from "../firebase";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
 import img from "../assets/auth.png";
 
 import React from "react";
@@ -102,7 +102,6 @@ const MyContext = ({ children }) => {
     getAllUsers();
     getAllPosts();
   }, []);
-  
 
   useEffect(() => {
     const getFollowedUsersPost = () => {
@@ -138,9 +137,7 @@ const MyContext = ({ children }) => {
     };
 
     const getUserPosts = () => {
-      const userPosts = allPosts.filter(
-        (user) => user.id === User.uid
-      );
+      const userPosts = allPosts.filter((user) => user.id === User.uid);
 
       setUsersPosts(userPosts);
       setPostCount(userPosts.length);
@@ -150,7 +147,16 @@ const MyContext = ({ children }) => {
     getFollowers();
     getFollowingUsers();
     getUserPosts();
-  }, [followedUsers, allPosts, allUsers, followersLists, followingUsers, postCount, followersCount, followingCount]);
+  }, [
+    followedUsers,
+    allPosts,
+    allUsers,
+    followersLists,
+    followingUsers,
+    postCount,
+    followersCount,
+    followingCount,
+  ]);
 
   const handlePost = async () => {
     await addDoc(postsCollectionRef, {
@@ -172,8 +178,6 @@ const MyContext = ({ children }) => {
         setText,
         handlePost,
         followers,
-        isFollowing,
-        setIsFollowing,
         postCount,
         followersCount,
         followingCount,
@@ -184,7 +188,8 @@ const MyContext = ({ children }) => {
         setLoading,
         allUsers,
         allPosts,
-        followedUsers
+        followedUsers,
+        isFollowing, setIsFollowing, followersLists, followingUsers
       }}
     >
       {children}
