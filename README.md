@@ -1,6 +1,4 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# TweetX(https://tweetx-ztf5.onrender.com)
 
 ## Available Scripts
 
@@ -39,32 +37,18 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## Preview
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![image](https://github.com/tangentveil/TweetX_React_Firebase/assets/59107332/ff598687-db88-48c2-853a-d679f5e76309)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![image](https://github.com/tangentveil/TweetX_React_Firebase/assets/59107332/9efd6290-3f1d-4368-a9e2-cff1cdca5e8a)
 
-### Code Splitting
+![image](https://github.com/tangentveil/TweetX_React_Firebase/assets/59107332/3f04652f-5c98-4340-9182-2632c144702b)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![image](https://github.com/tangentveil/TweetX_React_Firebase/assets/59107332/7e18c6eb-46c1-4d79-be9f-3976883c9fc0)
 
-### Analyzing the Bundle Size
+![image](https://github.com/tangentveil/TweetX_React_Firebase/assets/59107332/0c5223e3-49ac-4e8a-aa0d-8d6ed259d79a)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![image](https://github.com/tangentveil/TweetX_React_Firebase/assets/59107332/60040921-3ce5-4291-9215-f6a90f6b75e2)
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![image](https://github.com/tangentveil/TweetX_React_Firebase/assets/59107332/7e451bb5-e825-4595-9877-3a5e733dda05)
