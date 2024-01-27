@@ -1,14 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./User.css";
-import {
-  collection,
-  deleteDoc,
-  doc,
-  getDoc,
-  setDoc,
-} from "firebase/firestore";
+import { collection, deleteDoc, doc, setDoc } from "firebase/firestore";
 import { auth, db } from "../../firebase";
-import img from '../../assets/auth.png'
+import img from "../../assets/auth.png";
 import { Context } from "../../Context/MyContext";
 
 const User = ({ users }) => {
@@ -16,7 +10,7 @@ const User = ({ users }) => {
   const User = auth.currentUser;
   // console.log(curUser)
 
-  const {followingUsers} = useContext(Context)
+  const { followingUsers } = useContext(Context);
   const [isFollowing, setIsFollowing] = useState(false);
 
   const userFollowRef = collection(db, "users", User.uid, "follows");
@@ -29,11 +23,10 @@ const User = ({ users }) => {
     const checkIfFollowing = () => {
       const UserIds = new Set(followingUsers);
       const filteredFollows = UserIds.has(users.id);
-  
+
       // console.log(filteredFollows)
-  
-      setIsFollowing(filteredFollows)
-  
+
+      setIsFollowing(filteredFollows);
     };
 
     checkIfFollowing();
@@ -57,7 +50,7 @@ const User = ({ users }) => {
           });
 
           setIsFollowing(!isFollowing);
-          alert("User Followed")
+          alert("User Followed");
         }
       }
     } catch (error) {

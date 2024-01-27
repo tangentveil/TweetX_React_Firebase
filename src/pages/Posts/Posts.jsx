@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import './Posts.css'
-import Post from './Post'
+import React from "react";
+import "./Posts.css";
+import Post from "./Post";
 
-const Posts = ({postLists}) => {
-
+const Posts = ({ postLists }) => {
   // console.log(postLists)
 
   return (
@@ -16,7 +15,7 @@ const Posts = ({postLists}) => {
         ))}
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Posts
+export default Posts;

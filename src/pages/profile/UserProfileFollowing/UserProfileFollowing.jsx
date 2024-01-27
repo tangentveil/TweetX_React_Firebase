@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import Profile from "./Profile";
-import { Context } from "../../Context/MyContext";
+import Profile from "../Profile";
+import { Context } from "../../../Context/MyContext";
 
 const UserProfileFollowing = () => {
-  const {img, userListFollowing} = useContext(Context);
+  const { img, userListFollowing } = useContext(Context);
 
   return (
     <>
@@ -22,9 +22,8 @@ const UserProfileFollowing = () => {
                   <p>{item?.displayName}</p>
                   <p>Following: 200</p>
                 </div>
-
               </div>
-                <p>Following</p>
+              <p>Following</p>
             </div>
             <div className="underline"></div>
           </div>

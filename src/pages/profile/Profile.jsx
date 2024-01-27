@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import "./Profile.css";
 import Navbar from "../../components/Navbar/Navbar";
-import UserProfileNav from "./UserProfileNav";
+import UserProfileNav from "./UserProfileNav/UserProfileNav";
 import { auth } from "../../firebase";
 import { Context } from "../../Context/MyContext";
 
@@ -27,11 +27,9 @@ const Profile = () => {
             <p>Following: {followingCount}</p>
           </div>
         </div>
-
       </div>
       <div className="user-profile-nav">
         <UserProfileNav />
-
       </div>
     </>
   );

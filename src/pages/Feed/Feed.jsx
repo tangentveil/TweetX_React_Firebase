@@ -1,16 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Feed.css";
 import Navbar from "../../components/Navbar/Navbar";
 import Posts from "../Posts/Posts";
 import { Context } from "../../Context/MyContext";
 
 const Feed = () => {
-  const { setText, handlePost, postLists, loading, setLoading } = useContext(Context);
+  const { setText, handlePost, postLists } = useContext(Context);
 
-  console.log(postLists)
-  
-  if(postLists.length === 0) setLoading(true);
-  else setLoading(false);
+  const [loading, setLoading] = useState(false);
+
+  // console.log(postLists);
+
+  useEffect(() => {
+    if (postLists.length === 0) setLoading(true);
+    else setLoading(false);
+  }, [postLists]);
 
   return (
     <div className="feed-container">
@@ -29,7 +33,7 @@ const Feed = () => {
             </button>
           </div>
         </div>
-        {loading ?<h1>Loading...</h1> :<Posts postLists={postLists}></Posts>}
+        {loading ? <h1>Loading...</h1> : <Posts postLists={postLists}></Posts>}
       </div>
     </div>
   );

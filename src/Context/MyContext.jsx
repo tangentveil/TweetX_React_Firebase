@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { auth, db } from "../firebase";
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
+import { addDoc, collection, getDocs } from "firebase/firestore";
 import img from "../assets/auth.png";
 
 import React from "react";
@@ -16,7 +16,6 @@ const MyContext = ({ children }) => {
   const [allPosts, setAllposts] = useState([]);
 
   const [postLists, setPostLists] = useState([]);
-  const [userLists, setUserLists] = useState([]);
   const [followedUsers, setFollowedUsers] = useState([]);
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
@@ -174,7 +173,6 @@ const MyContext = ({ children }) => {
     <Context.Provider
       value={{
         postLists,
-        userLists,
         setText,
         handlePost,
         followers,
@@ -189,7 +187,10 @@ const MyContext = ({ children }) => {
         allUsers,
         allPosts,
         followedUsers,
-        isFollowing, setIsFollowing, followersLists, followingUsers
+        isFollowing,
+        setIsFollowing,
+        followersLists,
+        followingUsers,
       }}
     >
       {children}

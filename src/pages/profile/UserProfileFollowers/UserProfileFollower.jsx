@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Context } from "../../Context/MyContext";
-import { auth, db } from "../../firebase";
-import { collection, deleteDoc, doc, getDoc, setDoc } from "firebase/firestore";
+import { Context } from "../../../Context/MyContext";
+import { auth, db } from "../../../firebase";
+import { collection, deleteDoc, doc, setDoc } from "firebase/firestore";
 
 const UserProfileFollower = ({ users }) => {
-  const { img, followingUsers} = useContext(Context);
+  const { img, followingUsers } = useContext(Context);
 
   const User = auth.currentUser;
 
@@ -20,11 +20,10 @@ const UserProfileFollower = ({ users }) => {
     const checkIfFollowing = () => {
       const UserIds = new Set(followingUsers);
       const filteredFollows = UserIds.has(users.id);
-  
+
       // console.log(filteredFollowings)
-  
-      setIsFollowing(filteredFollows)
-  
+
+      setIsFollowing(filteredFollows);
     };
 
     checkIfFollowing();
@@ -56,7 +55,7 @@ const UserProfileFollower = ({ users }) => {
     }
   };
 
-  console.log(isFollowing)
+  console.log(isFollowing);
 
   return (
     <div className="container">

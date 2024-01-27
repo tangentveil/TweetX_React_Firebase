@@ -14,7 +14,7 @@ const firebaseConfig = {
   storageBucket: "tweetx-8254d.appspot.com",
   messagingSenderId: "1029493419241",
   appId: "1:1029493419241:web:3738f0c2a4d102b0565478",
-  measurementId: "G-7F71ND2KWZ"
+  measurementId: "G-7F71ND2KWZ",
 };
 
 // Initialize Firebase

@@ -22,9 +22,9 @@ const Post = ({ post }) => {
             </div>
 
             <div className="text_cir">
-                <p>{post.text}</p>
-                <div className="cir"></div>
-              </div>
+              <p>{post.text}</p>
+              <div className="cir"></div>
+            </div>
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import './UserProfilePosts.css'
-import Profile from "./Profile";
-import { Context } from "../../Context/MyContext";
+import Profile from "../Profile";
+import { Context } from "../../../Context/MyContext";
 import moment from "moment";
 
 const UserProfilePosts = () => {
@@ -14,7 +14,7 @@ const UserProfilePosts = () => {
       <div className="user-profile-posts-container">
       <div className="mainPostContainer">
         {usersPosts.map((item) => (
-          <div key={item.id} className="PostContainer">
+          <div key={item.docId} className="PostContainer">
           <div className="SubPostContainer">
             <div className="image-user_time">
               <div className="image">

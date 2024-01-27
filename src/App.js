@@ -2,12 +2,11 @@ import "./App.css";
 import MyContext from "./Context/MyContext";
 import Auth from "./pages/Auth/Auth";
 import Feed from "./pages/Feed/Feed";
-import Profile from "./pages/profile/Profile";
 import Posts from "./pages/Posts/Posts";
 import Users from "./pages/Users/Users";
-import UserProfilePosts from "./pages/profile/UserProfilePosts";
-import UserProfileFollowers from "./pages/profile/UserProfileFollowers";
-import UserProfileFollowing from "./pages/profile/UserProfileFollowing";
+import UserProfilePosts from "./pages/profile/UserProfilePosts/UserProfilePosts";
+import UserProfileFollowers from "./pages/profile/UserProfileFollowers/UserProfileFollowers";
+import UserProfileFollowing from "./pages/profile/UserProfileFollowing/UserProfileFollowing";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { auth } from "./firebase";
@@ -52,7 +51,6 @@ function App() {
               <Route path="/profile/posts" element={<UserProfilePosts />} />
               <Route path="/posts" element={<Posts />} />
               <Route path="/users" element={<Users />} />
-              {/* <Route path='/profile/posts' element={<UserProfilePosts/>} /> */}
               <Route
                 path="/profile/followers"
                 element={<UserProfileFollowers />}

@@ -32,21 +32,30 @@ const Navbar = () => {
       .catch((error) => console.log(error));
   };
 
+  const links = [
+    { id: 1, href: "/feed", text: "feed" },
+    { id: 2, href: "/users", text: "Users" },
+    { id: 3, href: "/profile/posts", text: "Profile" },
+  ];
+
   return (
     <div>
       <header>
         <h2>TweetX</h2>
 
         <nav>
-          <NavLink to="/feed" className="nav-links" activeclassname="active">
-            <p>Feed</p>
-          </NavLink>
-          <NavLink to="/users" className="nav-links" activeclassname="active">
-            <p>Users</p>
-          </NavLink>
-          <NavLink to="/profile/posts" className="nav-links" activeclassname="active">
-            <p>Profile</p>
-          </NavLink>
+          {links.map((link) => {
+            return (
+              <NavLink
+                key={link.id}
+                to={link.href}
+                className="nav-links"
+                activeclassname="active"
+              >
+                <p>{link.text}</p>
+              </NavLink>
+            );
+          })}
 
           <div className="btn-div">
             <button onClick={usersignOut}>Sign Out</button>

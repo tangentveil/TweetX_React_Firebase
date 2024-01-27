@@ -1,5 +1,5 @@
 import "./Auth.css";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { auth, db } from "../../firebase";
 import {
   createUserWithEmailAndPassword,
@@ -8,11 +8,9 @@ import {
 } from "firebase/auth";
 import image from "../../assets/auth.png";
 import { useNavigate } from "react-router-dom";
-import { collection, addDoc, setDoc, getDoc, doc } from "firebase/firestore";
-import { Context } from "../../Context/MyContext";
+import { collection, setDoc, getDoc, doc } from "firebase/firestore";
 
 const Auth = () => {
-  const user = auth.currentUser;
   const navigate = useNavigate();
   const [isSignup, setIsSignup] = useState(false);
   const [name, setName] = useState("");
@@ -20,7 +18,6 @@ const Auth = () => {
   const [password, setPassword] = useState("");
 
   // const {getFollowedUsersPost} = useContext(Context);
-
 
   const handleSwitch = () => {
     setIsSignup(!isSignup);
